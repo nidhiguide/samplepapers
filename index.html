@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nidhi Guide – Sample Papers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1923;
+    --cream: #faf7f2;
+    --saffron: #e8873a;
+    --saffron-light: #fdf0e5;
+    --teal: #1a6b6b;
+    --teal-light: #e3f0f0;
+    --gold: #c9972e;
+    --muted: #6b7280;
+    --border: #e5ddd0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: var(--saffron);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+  .logo-text span { color: var(--saffron); }
+  nav { display: flex; gap: 8px; }
+  nav button {
+    background: none; border: none; cursor: pointer;
+    color: #aaa; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; padding: 8px 14px; border-radius: 8px;
+    transition: all 0.2s;
+  }
+  nav button:hover, nav button.active { background: rgba(255,255,255,0.1); color: #fff; }
+  nav button.active { color: var(--saffron); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 60px 2rem 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(232,135,58,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(26,107,107,0.2) 0%, transparent 50%);
+  }
+  .hero-inner {
+    max-width: 1200px; margin: auto; position: relative;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .hero h1 em { color: var(--saffron); font-style: normal; }
+  .hero p { color: #b0bec5; font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; }
+  .hero-stats {
+    display: flex; gap: 2rem;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--saffron); }
+  .stat-label { font-size: 0.75rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Search card in hero */
+  .search-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    color: var(--ink);
+  }
+  .search-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+  .filter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .filter-item { display: flex; flex-direction: column; gap: 6px; }
+  .filter-item label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); }
+  .filter-item select, .filter-item input {
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    background: var(--cream);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .filter-item select:focus, .filter-item input:focus { border-color: var(--saffron); }
+  .search-btn {
+    width: 100%; padding: 14px;
+    background: var(--saffron);
+    color: #fff; border: none;
+    border-radius: 12px; font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; margin-top: 4px;
+  }
+  .search-btn:hover { background: #d4732a; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,135,58,0.4); }
+
+  /* ── MAIN CONTENT ── */
+  main { max-width: 1200px; margin: auto; padding: 3rem 2rem; }
+
+  /* Section headers */
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; color: var(--ink);
+  }
+  .section-title span { color: var(--saffron); }
+  .see-all { color: var(--teal); font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; border: none; background: none; }
+  .see-all:hover { text-decoration: underline; }
+
+  /* Subject pills */
+  .subject-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 2.5rem; }
+  .pill {
+    padding: 8px 18px; border-radius: 50px;
+    border: 1.5px solid var(--border);
+    background: #fff; cursor: pointer;
+    font-size: 0.85rem; font-weight: 500;
+    transition: all 0.2s; color: var(--ink);
+  }
+  .pill:hover { border-color: var(--saffron); color: var(--saffron); }
+  .pill.active { background: var(--saffron); border-color: var(--saffron); color: #fff; }
+
+  /* Paper cards grid */
+  .papers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .paper-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: pointer;
+    animation: fadeUp 0.4s ease both;
+  }
+  .paper-card:hover {
+    border-color: var(--saffron);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(232,135,58,0.15);
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-top {
+    padding: 1.25rem 1.25rem 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .card-subject {
+    font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    padding: 4px 10px; border-radius: 6px;
+  }
+  .subj-math    { background: #e8f4fd; color: #1565c0; }
+  .subj-science { background: #e8f5e9; color: #2e7d32; }
+  .subj-english { background: #fff3e0; color: #e65100; }
+  .subj-hindi   { background: #fce4ec; color: #880e4f; }
+  .subj-sst     { background: #f3e5f5; color: #6a1b9a; }
+  .subj-default { background: var(--teal-light); color: var(--teal); }
+
+  .card-year { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+
+  .card-body { padding: 1rem 1.25rem; }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; color: var(--ink);
+    margin-bottom: 0.5rem; line-height: 1.4;
+  }
+  .card-meta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .meta-tag {
+    font-size: 0.78rem; color: var(--muted);
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  .card-footer {
+    padding: 1rem 1.25rem;
+    display: flex; gap: 8px; align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .btn-paper, .btn-answer {
+    flex: 1; padding: 9px;
+    border-radius: 9px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; font-weight: 600; cursor: pointer;
+    border: none; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .btn-paper { background: var(--saffron); color: #fff; }
+  .btn-paper:hover { background: #d4732a; }
+  .btn-answer { background: var(--teal-light); color: var(--teal); }
+  .btn-answer:hover { background: #c5e0e0; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(15,25,35,0.7); backdrop-filter: blur(4px);
+    z-index: 999; align-items: center; justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff; border-radius: 20px;
+    width: 100%; max-width: 700px; max-height: 90vh;
+    overflow-y: auto; animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; background: #fff; z-index: 1;
+  }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
+  .modal-close {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: none; background: var(--cream); cursor: pointer;
+    font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+    color: var(--ink); transition: background 0.2s;
+  }
+  .modal-close:hover { background: var(--border); }
+  .modal-body { padding: 1.5rem 2rem 2rem; }
+
+  /* Tabs inside modal */
+  .modal-tabs { display: flex; gap: 4px; margin-bottom: 1.5rem; background: var(--cream); border-radius: 10px; padding: 4px; }
+  .modal-tab {
+    flex: 1; padding: 9px; border: none; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+    cursor: pointer; transition: all 0.2s; background: none; color: var(--muted);
+  }
+  .modal-tab.active { background: #fff; color: var(--ink); box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .question-block {
+    background: var(--cream); border-radius: 12px; padding: 1.2rem;
+    margin-bottom: 1rem; border-left: 3px solid var(--saffron);
+  }
+  .q-num { font-size: 0.75rem; font-weight: 700; color: var(--saffron); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .q-text { font-size: 0.95rem; line-height: 1.6; }
+  .q-marks { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
+
+  .answer-block {
+    background: var(--teal-light); border-radius: 12px; padding: 1.2rem;
+    margin-bottom: 1rem; border-left: 3px solid var(--teal);
+  }
+  .a-num { font-size: 0.75rem; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .a-text { font-size: 0.95rem; line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: #aaa;
+    text-align: center; padding: 2rem;
+    font-size: 0.85rem; margin-top: 3rem;
+  }
+  footer strong { color: var(--saffron); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .filter-grid { grid-template-columns: 1fr; }
+    nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">📚</div>
+      <span class="logo-text">Nidhi <span>Guide</span></span>
+    </a>
+    <nav>
+      <button class="active" onclick="setNav(this,'home')">Home</button>
+      <button onclick="setNav(this,'papers')">Sample Papers</button>
+      <button onclick="setNav(this,'answers')">Answer Keys</button>
+      <button onclick="setNav(this,'about')">About</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Ace Your Exams with <em>Nidhi Guide</em> Sample Papers</h1>
+      <p>Free sample papers for Classes 1–12 with detailed answer keys. Filter by class, subject & year to find exactly what you need.</p>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Papers</div></div>
+        <div class="stat"><div class="stat-num">12</div><div class="stat-label">Classes</div></div>
+        <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Subjects</div></div>
+      </div>
+    </div>
+    <div class="search-card">
+      <h3>🔍 Find Your Paper</h3>
+      <div class="filter-grid">
+        <div class="filter-item">
+          <label>Class</label>
+          <select id="filterClass">
+            <option value="">All Classes</option>
+            <option>Class 6</option><option>Class 7</option><option>Class 8</option>
+            <option>Class 9</option><option>Class 10</option>
+            <option>Class 11</option><option>Class 12</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label>Subject</label>
+          <select id="filterSubject">
+            <option value="">All Subjects</option>
+            <option>Mathematics</option><option>Science</option><option>English</option>
+            <option>Hindi</option><option>Social Science</option>
+            <option>Physics</option><option>Chemistry</option><option>Biology</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label>Year</label>
+          <select id="filterYear">
+            <option value="">All Years</option>
+            <option>2024</option><option>2023</option><option>2022</option>
+            <option>2021</option><option>2020</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label>Paper Type</label>
+          <select id="filterType">
+            <option value="">All Types</option>
+            <option>Mid-Term</option><option>Final Exam</option>
+            <option>Pre-Board</option><option>Practice Set</option>
+          </select>
+        </div>
+      </div>
+      <button class="search-btn" onclick="applyFilters()">🔎 Search Papers</button>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main>
+
+  <!-- Subject Pills -->
+  <div class="subject-pills" id="subjectPills">
+    <div class="pill active" onclick="filterBySubject(this,'All')">All Subjects</div>
+    <div class="pill" onclick="filterBySubject(this,'Mathematics')">📐 Mathematics</div>
+    <div class="pill" onclick="filterBySubject(this,'Science')">🔬 Science</div>
+    <div class="pill" onclick="filterBySubject(this,'English')">📖 English</div>
+    <div class="pill" onclick="filterBySubject(this,'Hindi')">🇮🇳 Hindi</div>
+    <div class="pill" onclick="filterBySubject(this,'Social Science')">🌍 Social Science</div>
+    <div class="pill" onclick="filterBySubject(this,'Physics')">⚛️ Physics</div>
+    <div class="pill" onclick="filterBySubject(this,'Chemistry')">🧪 Chemistry</div>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">Sample <span>Papers</span></h2>
+    <span id="paperCount" style="color:var(--muted);font-size:0.9rem;"></span>
+  </div>
+
+  <div class="papers-grid" id="papersGrid"></div>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Paper</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="switchTab(this,'paper')">📝 Sample Paper</button>
+        <button class="modal-tab" onclick="switchTab(this,'answer')">✅ Answer Key</button>
+      </div>
+      <div class="tab-content active" id="tab-paper"></div>
+      <div class="tab-content" id="tab-answer"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2024 <strong>Nidhi Guide</strong> · Empowering students across India · All sample papers are for practice purposes</p>
+</footer>
+
+<script>
+const PAPERS = [
+  {
+    id:1, class:'Class 10', subject:'Mathematics', year:'2024', type:'Pre-Board',
+    title:'Mathematics Pre-Board 2024', totalMarks:80, duration:'3 hrs',
+    questions:[
+      { q:'Find the HCF of 96 and 404 using Euclid\'s Division Algorithm.', marks:'3' },
+      { q:'Prove that √2 is an irrational number.', marks:'3' },
+      { q:'Find the zeroes of the polynomial p(x) = x² – 3x – 4 and verify the relationship between zeroes and coefficients.', marks:'4' },
+      { q:'Solve the pair of linear equations: 2x + 3y = 11 and 2x – 4y = – 24.', marks:'3' },
+      { q:'The sum of the first 20 terms of an AP is 400. If the first term is 3, find the common difference.', marks:'3' },
+      { q:'Draw a triangle ABC with side BC = 7 cm, ∠B = 45°, ∠A = 105°. Construct a triangle similar to ΔABC with scale factor 4/3.', marks:'4' },
+    ],
+    answers:[
+      { a:'HCF(96, 404): 404 = 96×4 + 20, 96 = 20×4 + 16, 20 = 16×1 + 4, 16 = 4×4 + 0. Therefore HCF = 4.' },
+      { a:'Assume √2 = p/q (lowest terms). Then 2q² = p², so p² is even ⟹ p is even. Let p = 2m. Then 2q² = 4m² ⟹ q² = 2m² ⟹ q is even. Contradiction with p/q in lowest terms. Hence √2 is irrational.' },
+      { a:'x² – 3x – 4 = (x – 4)(x + 1). Zeroes: α = 4, β = –1. Sum = 3 = 3/1 ✓, Product = –4 = –4/1 ✓.' },
+      { a:'Subtracting: 7y = 35 ⟹ y = 5. Substituting: 2x + 15 = 11 ⟹ x = –2. Solution: x = –2, y = 5.' },
+      { a:'S₂₀ = 400. Formula: S = n/2(2a + (n–1)d). 400 = 10(6 + 19d) ⟹ 40 = 6 + 19d ⟹ d = 34/19 ≈ 1.79.' },
+      { a:'Steps: Draw BC = 7 cm. Construct ∠B = 45°. ∠C = 180 – 105 – 45 = 30°. Construct ∠C = 30° to get A. Then use the scale factor 4/3 with standard similar triangle construction.' },
+    ]
+  },
+  {
+    id:2, class:'Class 10', subject:'Science', year:'2024', type:'Final Exam',
+    title:'Science Final Exam 2024', totalMarks:80, duration:'3 hrs',
+    questions:[
+      { q:'Define the term "focal length" of a concave mirror. An object is placed at a distance of 15 cm from a concave mirror of focal length 10 cm. Find the image distance.', marks:'3' },
+      { q:'What is the difference between a displacement reaction and a double displacement reaction? Give one example of each.', marks:'3' },
+      { q:'List four properties of magnetic field lines.', marks:'2' },
+      { q:'Explain the process of nutrition in Amoeba with a diagram.', marks:'5' },
+      { q:'State Mendel\'s Law of Segregation and explain it with a monohybrid cross.', marks:'5' },
+    ],
+    answers:[
+      { a:'Focal length = distance between pole and focus. Using mirror formula: 1/v + 1/u = 1/f. u = –15 cm, f = –10 cm. 1/v = 1/f – 1/u = –1/10 + 1/15 = –1/30. So v = –30 cm (real, inverted image at 30 cm).' },
+      { a:'Displacement: one element displaces another from compound. E.g. Zn + CuSO₄ → ZnSO₄ + Cu. Double displacement: two compounds exchange ions. E.g. BaCl₂ + Na₂SO₄ → BaSO₄ + 2NaCl.' },
+      { a:'(1) Magnetic field lines are closed curves. (2) They never intersect. (3) They emerge from N-pole and enter S-pole. (4) Closer lines indicate stronger field.' },
+      { a:'Amoeba engulfs food by pseudopodia (phagocytosis) → food vacuole forms → lysosomes fuse and digest food → nutrients absorbed → waste expelled. This is called holozoic nutrition.' },
+      { a:'Law of Segregation: alleles separate during gamete formation. Monohybrid cross: Tt × Tt → TT : 2Tt : tt (3:1 phenotype ratio). T is dominant, t is recessive.' },
+    ]
+  },
+  {
+    id:3, class:'Class 9', subject:'Mathematics', year:'2023', type:'Mid-Term',
+    title:'Mathematics Mid-Term 2023', totalMarks:40, duration:'1.5 hrs',
+    questions:[
+      { q:'Simplify: (√5 + √2)² – 2√10', marks:'2' },
+      { q:'If x = 2 is a zero of p(x) = ax² + 3x – 10, find the value of a.', marks:'2' },
+      { q:'In ΔABC, ∠B = 90°. If AB = 3 cm and BC = 4 cm, find AC.', marks:'2' },
+      { q:'Find the area of a triangle with vertices A(1,2), B(3,4) and C(5,0) using the coordinate formula.', marks:'3' },
+    ],
+    answers:[
+      { a:'(√5 + √2)² = 5 + 2√10 + 2 = 7 + 2√10. Subtracting 2√10: 7. Answer = 7.' },
+      { a:'p(2) = 0. 4a + 6 – 10 = 0. 4a = 4. a = 1.' },
+      { a:'By Pythagoras: AC² = AB² + BC² = 9 + 16 = 25. AC = 5 cm.' },
+      { a:'Area = ½|x₁(y₂–y₃) + x₂(y₃–y₁) + x₃(y₁–y₂)| = ½|1(4–0)+3(0–2)+5(2–4)| = ½|4–6–10| = ½×12 = 6 sq. units.' },
+    ]
+  },
+  {
+    id:4, class:'Class 12', subject:'Physics', year:'2024', type:'Pre-Board',
+    title:'Physics Pre-Board 2024', totalMarks:70, duration:'3 hrs',
+    questions:[
+      { q:'State Gauss\'s Law. Using it, find the electric field due to an infinitely long straight wire of linear charge density λ.', marks:'5' },
+      { q:'Derive the expression for the energy stored in a capacitor of capacitance C charged to potential V.', marks:'3' },
+      { q:'A proton and an alpha particle enter a magnetic field perpendicularly. Compare their radii of circular paths if both have the same kinetic energy.', marks:'3' },
+      { q:'Draw the circuit diagram of a full-wave rectifier and explain its working.', marks:'5' },
+    ],
+    answers:[
+      { a:'Gauss\'s Law: ∮E·dA = q_enc/ε₀. For long wire, take cylindrical Gaussian surface of radius r and length l. E(2πrl) = λl/ε₀. E = λ/(2πε₀r), directed radially outward.' },
+      { a:'Work done charging from 0 to Q: dW = V dq = q/C dq. Total W = ∫₀^Q q/C dq = Q²/2C = ½CV² = ½QV. Energy stored = ½CV².' },
+      { a:'r = mv/qB. KE = p²/2m ⟹ p = √(2mK). r = √(2mK)/(qB). r_p/r_α = √(m_p/m_α) × (q_α/q_p) = √(1/4) × 2 = 1. Radii are equal.' },
+      { a:'Full-wave rectifier uses two diodes + centre-tap transformer. During +ve half: D1 conducts. During –ve half: D2 conducts. Both half-cycles give current in same direction through load. Output is pulsating DC.' },
+    ]
+  },
+  {
+    id:5, class:'Class 8', subject:'English', year:'2023', type:'Final Exam',
+    title:'English Final Exam 2023', totalMarks:80, duration:'3 hrs',
+    questions:[
+      { q:'Write a letter to your friend describing your recent visit to a historical monument. (100–120 words)', marks:'8' },
+      { q:'Read the passage and answer the questions:\n"Forests are the lungs of our planet. They absorb carbon dioxide and release oxygen. Deforestation is destroying these vital ecosystems at an alarming rate."\n(a) What do forests absorb? (b) What is destroying ecosystems?', marks:'4' },
+      { q:'Fill in the blanks with correct form of verb:\n(a) She ______ (go) to school every day.\n(b) They ______ (play) cricket when it started raining.', marks:'2' },
+      { q:'Write a paragraph on "My Favourite Festival" in about 80 words.', marks:'5' },
+    ],
+    answers:[
+      { a:'Sample Answer: Dear [Friend\'s name], I am writing to tell you about my wonderful visit to the Qutub Minar in Delhi. It is a magnificent tower built in 1193 AD. The intricate carvings and its height of 72.5 metres left me spellbound. We also visited the Iron Pillar which has not rusted in over 1600 years! It was a truly educational experience. You must visit it someday. Yours sincerely, [Your name].' },
+      { a:'(a) Forests absorb carbon dioxide. (b) Deforestation is destroying ecosystems.' },
+      { a:'(a) goes (simple present for regular habit). (b) were playing (past continuous for action in progress).' },
+      { a:'My favourite festival is Diwali, the festival of lights. Every year our entire family gathers together. We clean and decorate our house with diyas and rangoli. We burst firecrackers and share sweets with neighbours. The twinkling lights and joyful atmosphere fill our hearts with happiness. Diwali teaches us that light always overcomes darkness.' },
+    ]
+  },
+  {
+    id:6, class:'Class 11', subject:'Chemistry', year:'2022', type:'Practice Set',
+    title:'Chemistry Practice Set 2022', totalMarks:70, duration:'3 hrs',
+    questions:[
+      { q:'Calculate the number of atoms in 5.6 g of iron (Fe). Molar mass of Fe = 56 g/mol.', marks:'2' },
+      { q:'State the Aufbau principle and Hund\'s rule. Write the electronic configuration of Cr (Z=24).', marks:'4' },
+      { q:'What is hybridization? Determine the hybridization and shape of NH₃.', marks:'3' },
+      { q:'Distinguish between crystalline and amorphous solids. Give two examples of each.', marks:'4' },
+    ],
+    answers:[
+      { a:'Moles of Fe = 5.6/56 = 0.1 mol. Number of atoms = 0.1 × 6.022 × 10²³ = 6.022 × 10²² atoms.' },
+      { a:'Aufbau: electrons fill orbitals in order of increasing energy. Hund\'s rule: electrons occupy degenerate orbitals singly before pairing. Cr: [Ar] 3d⁵ 4s¹ (exception due to extra stability of half-filled 3d).' },
+      { a:'Hybridization = mixing of orbitals to form equivalent hybrid orbitals. In NH₃: N has 3 bond pairs + 1 lone pair = sp³ hybridization. Shape: trigonal pyramidal (bond angle ≈107°).' },
+      { a:'Crystalline: definite geometric shape, sharp melting point, anisotropic. E.g. NaCl, diamond. Amorphous: no definite shape, no sharp melting point, isotropic. E.g. glass, rubber.' },
+    ]
+  },
+];
+
+let currentFilter = 'All';
+let currentPaper = null;
+
+function renderPapers(papers) {
+  const grid = document.getElementById('papersGrid');
+  const count = document.getElementById('paperCount');
+  grid.innerHTML = '';
+  count.textContent = papers.length + ' paper' + (papers.length !== 1 ? 's' : '') + ' found';
+
+  if (papers.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted)">No papers found for the selected filters. Try adjusting your search.</div>';
+    return;
+  }
+
+  const subjectClass = {
+    'Mathematics':'subj-math','Science':'subj-science','English':'subj-english',
+    'Hindi':'subj-hindi','Social Science':'subj-sst','Physics':'subj-science',
+    'Chemistry':'subj-default','Biology':'subj-science'
+  };
+
+  papers.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'paper-card';
+    card.style.animationDelay = (i * 0.07) + 's';
+    const cls = subjectClass[p.subject] || 'subj-default';
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="card-subject ${cls}">${p.subject}</span>
+        <span class="card-year">${p.year}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${p.title}</div>
+        <div class="card-meta">
+          <span class="meta-tag">🏫 ${p.class}</span>
+          <span class="meta-tag">📄 ${p.type}</span>
+          <span class="meta-tag">⏱ ${p.duration}</span>
+          <span class="meta-tag">💯 ${p.totalMarks} marks</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn-paper" onclick="openModal(${p.id},'paper')">📝 Sample Paper</button>
+        <button class="btn-answer" onclick="openModal(${p.id},'answer')">✅ Answer Key</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function applyFilters() {
+  const cls  = document.getElementById('filterClass').value;
+  const subj = document.getElementById('filterSubject').value;
+  const year = document.getElementById('filterYear').value;
+  const type = document.getElementById('filterType').value;
+
+  let filtered = PAPERS.filter(p => {
+    if (cls  && p.class   !== cls)  return false;
+    if (subj && p.subject !== subj) return false;
+    if (year && p.year    !== year) return false;
+    if (type && p.type    !== type) return false;
+    return true;
+  });
+
+  // Also apply pill filter
+  if (currentFilter !== 'All') filtered = filtered.filter(p => p.subject === currentFilter);
+  renderPapers(filtered);
+}
+
+function filterBySubject(el, subj) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  currentFilter = subj;
+  applyFilters();
+}
+
+function openModal(id, tab) {
+  const paper = PAPERS.find(p => p.id === id);
+  if (!paper) return;
+  currentPaper = paper;
+
+  document.getElementById('modalTitle').textContent = paper.title;
+
+  // Build paper tab
+  let pHtml = `<div style="background:var(--cream);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.2rem;display:flex;gap:2rem;flex-wrap:wrap;">
+    <span style="font-size:0.85rem;color:var(--muted)">📚 ${paper.class}</span>
+    <span style="font-size:0.85rem;color:var(--muted)">📅 ${paper.year}</span>
+    <span style="font-size:0.85rem;color:var(--muted)">⏱ ${paper.duration}</span>
+    <span style="font-size:0.85rem;color:var(--muted)">💯 Total: ${paper.totalMarks} marks</span>
+  </div>`;
+  paper.questions.forEach((q, i) => {
+    pHtml += `<div class="question-block">
+      <div class="q-num">Question ${i+1}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-marks">[${q.marks} marks]</div>
+    </div>`;
+  });
+  document.getElementById('tab-paper').innerHTML = pHtml;
+
+  // Build answer tab
+  let aHtml = `<div style="background:var(--teal-light);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.2rem;color:var(--teal);font-size:0.9rem;font-weight:500;">
+    ✅ Complete answer key for ${paper.title}
+  </div>`;
+  paper.answers.forEach((a, i) => {
+    aHtml += `<div class="answer-block">
+      <div class="a-num">Answer ${i+1}</div>
+      <div class="a-text">${a.a}</div>
+    </div>`;
+  });
+  document.getElementById('tab-answer').innerHTML = aHtml;
+
+  // Set active tab
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  const tabName = tab || 'paper';
+  document.querySelector(`.modal-tab[onclick*="'${tabName}'"]`).classList.add('active');
+  document.getElementById('tab-' + tabName).classList.add('active');
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function switchTab(el, tab) {
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+function setNav(el, page) {
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Initial render
+renderPapers(PAPERS);
+</script>
+</body>
+</html>
